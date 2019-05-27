@@ -1,0 +1,48 @@
+<template>
+    <div class="authentication">
+        <h2>Login</h2>
+        <hr>
+        <form @submit.prevent="login">
+            <input type="email" v-model="form.email" @keypress.enter="$refs.password.focus()">
+            <input type="password" ref="password" v-model="form.password">
+            <button type="submit">Logar</button>
+        </form>
+    </div>
+</template>
+
+<script>
+
+const Axios = require( '../../services/axios.js' )
+
+export default {
+    data(){
+        return{
+            form:{
+                email: null,
+                password: null,
+            }
+        }     
+    },
+    methods: {
+        irParaInicio() {
+            // this.$router.push('/')
+            // this.$router.push({ path: '/' })
+            this.$router.push({ name: 'inicio' })
+        },
+        async login(){
+            try{
+                const cred = await Axios.post('auth' , this.form)
+                localStorage.setItem('credenciais' , JSON.stringify(cred.data))
+                this.$router.push({path: 'users'})
+                
+            }catch(error){
+                console.log(error.response.status,error.response.data,)
+            }
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>
