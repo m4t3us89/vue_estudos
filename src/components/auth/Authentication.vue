@@ -5,7 +5,7 @@
         <form @submit.prevent="login">
             <input type="email" v-model="form.email" @keypress.enter="$refs.password.focus()">
             <input type="password" ref="password" v-model="form.password">
-            <button type="submit">Logar</button>
+            <button type="submit" :disabled="loading">Logar</button>
         </form>
     </div>
 </template>
@@ -20,7 +20,8 @@ export default {
             form:{
                 email: 'allissonmateus89@gmail.com',
                 password: '123',
-            }
+            },
+            loading : false
         }     
     },
     methods: {
@@ -30,6 +31,7 @@ export default {
             this.$router.push({ name: 'inicio' })
         },
         async login(){
+            this.loading = true
             try{
                 const cred = await Axios.post('auth' , this.form)
                 console.log(cred)
@@ -40,6 +42,9 @@ export default {
                 console.log(error)
                 //console.log(error.response.status,error.response.data,)
             }
+            this.loading = false
+            
+
         }
     }
 }
