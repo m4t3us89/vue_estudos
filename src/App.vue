@@ -26,7 +26,7 @@ export default {
 		montarHTMLProfile(){
 			var url_storage = process.env.VUE_APP_ENV_URL_S3
 			if( /local/.test(process.env.VUE_APP_ENV_API_URL) ) url_storage = process.env.VUE_APP_ENV_API_URL
-			this.usuario = localStorage.getItem('credenciais') ? `Olá ${JSON.parse(localStorage.getItem('credenciais')).user.name} | Sair <br> <img src='${url_storage}/${JSON.parse(localStorage.getItem('credenciais')).user.profile}' style='height: 200px; width: 200px;'/>` : ''
+			this.usuario = localStorage.getItem('credenciais') ? `Olá ${JSON.parse(localStorage.getItem('credenciais')).user.name} | <strong>Sair</strong> <br> <img src='${url_storage}/${JSON.parse(localStorage.getItem('credenciais')).user.profile}' style='height: 200px; width: 200px;'/>` : ''
 		}
 	},
 	 watch: {
