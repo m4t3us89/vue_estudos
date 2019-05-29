@@ -15,25 +15,28 @@
 export default {
 	data(){
 		return {
-			usuario : localStorage.getItem('credenciais') ? `Olá ${JSON.parse(localStorage.getItem('credenciais')).user.name} | Sair <br> <img src='${url_storage}/${JSON.parse(localStorage.getItem('credenciais')).user.profile}' />` : ''
+			usuario : ''
 		}
 	},
 	methods:{
 		logout(){
 			localStorage.removeItem('credenciais');
 			this.$router.push('/')
-		}
-	},
-	/*updated() {
-   		this.usuario = localStorage.getItem('credenciais') ? `Olá ${JSON.parse(localStorage.getItem('credenciais')).user.name}` : ''
-	},*/
-	 watch: {
-		'$route' (to, from) {
+		},
+		montarHTMLProfile(){
 			var url_storage = process.env.VUE_APP_ENV_URL_S3
 			if( /local/.test(process.env.VUE_APP_ENV_API_URL) ) url_storage = process.env.VUE_APP_ENV_API_URL
 			this.usuario = localStorage.getItem('credenciais') ? `Olá ${JSON.parse(localStorage.getItem('credenciais')).user.name} | Sair <br> <img src='${url_storage}/${JSON.parse(localStorage.getItem('credenciais')).user.profile}' />` : ''
 		}
-  	}
+	},
+	 watch: {
+		'$route' (to, from) {
+			this.montarHTMLProfile()
+		}
+  	},
+	mounted(){
+		this.montarHTMLProfile()
+	}
 
 }
 </script>
