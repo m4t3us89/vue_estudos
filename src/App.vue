@@ -15,7 +15,7 @@
 export default {
 	data(){
 		return {
-			usuario : localStorage.getItem('credenciais') ? `Olá ${JSON.parse(localStorage.getItem('credenciais')).user.name}` : ''
+			usuario : localStorage.getItem('credenciais') ? `Olá ${JSON.parse(localStorage.getItem('credenciais')).user.name} | Sair <br> <img src='${url_storage}/${JSON.parse(localStorage.getItem('credenciais')).user.profile}' />` : ''
 		}
 	},
 	methods:{
