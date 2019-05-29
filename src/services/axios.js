@@ -8,7 +8,8 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.response.use( (response)=>{
   return response
 }, (err)=>{
-  window.location.href = `/error/${err.response.status}`
+  if(err.response.status == 401 || err.response.status == 403)
+    window.location.href = `/error/${err.response.status}`
   return Promise.reject(err)
 })
 

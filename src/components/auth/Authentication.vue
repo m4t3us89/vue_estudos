@@ -3,6 +3,7 @@
         <h2>Login</h2>
         <hr>
         <form @submit.prevent="login">
+            <div v-if="msg" style="color: red;">{{ msg.message }}</div>
             <input type="email" v-model="form.email" @keypress.enter="$refs.password.focus()">
             <input type="password" ref="password" v-model="form.password">
             <button type="submit" :disabled="loading"><i class="fas fa-spinner fa-spin" v-if="loading"></i> Logar</button>
@@ -21,7 +22,8 @@ export default {
                 email: 'allissonmateus89@gmail.com',
                 password: '123',
             },
-            loading : false
+            loading : false,
+            msg: null
         }     
     },
     methods: {
@@ -31,6 +33,7 @@ export default {
             this.$router.push({ name: 'inicio' })
         },
         async login(){
+            this.msg = null
             this.loading = true
             try{
                 const cred = await Axios.post('auth' , this.form)
@@ -40,6 +43,7 @@ export default {
                 
             }catch(error){
                 console.log(error)
+                this.msg = error.response.data
                 //console.log(error.response.status,error.response.data,)
             }
             this.loading = false
