@@ -24,12 +24,15 @@ export default {
 			this.$router.push('/')
 		}
 	},
-	updated() {
+	/*updated() {
    		this.usuario = localStorage.getItem('credenciais') ? `Olá ${JSON.parse(localStorage.getItem('credenciais')).user.name}` : ''
-	},
-	watch: {
-		
-	}
+	},*/
+	 watch: {
+		'$route' (to, from) {
+			this.usuario = localStorage.getItem('credenciais') ? `Olá ${JSON.parse(localStorage.getItem('credenciais')).user.name}` : ''
+		}
+  	}
+
 }
 </script>
 
