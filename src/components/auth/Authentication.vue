@@ -5,7 +5,7 @@
         <form @submit.prevent="login">
             <input type="email" v-model="form.email" @keypress.enter="$refs.password.focus()">
             <input type="password" ref="password" v-model="form.password">
-            <button type="submit" :disabled="loading">Logar</button>
+            <button type="submit" :disabled="loading"><i class="fas fa-spinner fa-spin" v-if="loading"></i> Logar</button>
         </form>
     </div>
 </template>
