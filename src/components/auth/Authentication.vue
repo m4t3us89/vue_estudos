@@ -18,8 +18,8 @@ export default {
     data(){
         return{
             form:{
-                email: null,
-                password: null,
+                email: 'allissonmateus89@gmail.com',
+                password: '123',
             }
         }     
     },
@@ -32,11 +32,13 @@ export default {
         async login(){
             try{
                 const cred = await Axios.post('auth' , this.form)
+                console.log(cred)
                 localStorage.setItem('credenciais' , JSON.stringify(cred.data))
                 this.$router.push({path: 'users'})
                 
             }catch(error){
-                console.log(error.response.status,error.response.data,)
+                console.log(error)
+                //console.log(error.response.status,error.response.data,)
             }
         }
     }

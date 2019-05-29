@@ -24,11 +24,8 @@ export default {
         },
         async usuarios(){
             try{
-                const users = await Axios.get('users' , {headers:{
-                    token : JSON.parse(localStorage.getItem('credenciais')).token
-                }})
+                const users = await Axios.get('users')
                 this.users = users.data
-                console.log(this.users)
             }catch(error){
                 console.log(error.response.status,error.response.data,)
             }
