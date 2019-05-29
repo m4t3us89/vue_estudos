@@ -4,8 +4,8 @@
         <hr>
         <form @submit.prevent="login">
             <div v-if="msg" style="color: red;">{{ msg.message }}</div>
-            <input type="email" v-model="form.email" @keypress.enter="$refs.password.focus()">
-            <input type="password" ref="password" v-model="form.password">
+            <input type="email" v-model="form.email" @keypress.enter="$refs.password.focus()" :readonly="loading">
+            <input type="password" ref="password" v-model="form.password" :readonly="loading">
             <button type="submit" :disabled="loading"><i class="fas fa-spinner fa-spin" v-if="loading"></i> Logar</button>
         </form>
     </div>
